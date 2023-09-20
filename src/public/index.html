@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample ATS API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+      }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      p {
+        color: #666;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to ATS!</h1>
+    </header>
+    <main>
+      <h2>API Description</h2>
+      <p>
+        The Application Tracking System (ATS) API is a tool for managing job
+        applications, tracking candidate information, and streamlining the
+        hiring process. It provides a set of endpoints to interact with
+        application data, enabling you to create, retrieve, update, and delete
+        applications seamlessly.
+      </p>
+
+      <h2>API Endpoints</h2>
+      <table>
+        <tr>
+          <th>Endpoint</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>/</td>
+          <td>Root endpoint with a welcome message and API description.</td>
+        </tr>
+        <tr>
+          <td>/api-docs</td>
+          <td>Swagger documentation for the API.</td>
+        </tr>
+        <tr>
+          <td>/applications</td>
+          <td>Get a list of all job applications.</td>
+        </tr>
+        <tr>
+          <td>/applications (POST)</td>
+          <td>Create a new job application.</td>
+        </tr>
+        <tr>
+          <td>/applications/{id}</td>
+          <td>Get a specific job application by ID.</td>
+        </tr>
+        <tr>
+          <td>/applications/{id} (PUT)</td>
+          <td>Update an existing job application by ID.</td>
+        </tr>
+        <tr>
+          <td>/applications/{id} (DELETE)</td>
+          <td>Delete a job application by ID.</td>
+        </tr>
+      </table>
+
+      <p>
+        For detailed documentation and testing, you can visit the
+        <a href="/api-docs" target="_blank">Swagger documentation</a>.
+      </p>
+    </main>
+  </body>
+</html>

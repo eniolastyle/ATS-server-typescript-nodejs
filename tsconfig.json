@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2016",
+    "types": ["node", "ts-node", "mocha", "chai"],
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
