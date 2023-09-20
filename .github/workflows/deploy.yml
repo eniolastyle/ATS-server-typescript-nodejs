@@ -25,11 +25,14 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
           service_account_key: ${{ secrets.SA_CREDENTIALS }}
           export_default_credentials: true
+
+      - name: generate image tag
+        id: tag
         run: |
           echo "TAG=$(bash ./scripts/tag.sh)" >> $GITHUB_ENV
 
-      - name: compile and test app
-        run: echo "Compiling and Testing app"
+      - name: run test
+        run: echo "Testing app.."
 
       - name: build and push the docker image
         env:
