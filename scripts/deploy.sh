@@ -36,4 +36,12 @@ else
     kubectl expose deployment $DEPLOYMENTNAME --type=LoadBalancer --name=$APP_NAME --port=80 --target-port=5000 -n $NAMESPACE
 fi
 
+# Delete old deployments with different versions
+OLD_DEPLOYMENTS=$(kubectl get deployments -n $NAMESPACE -l app=$APP_NAME -o jsonpath='{.items[?(@.metadata.labels.version!="'$VERSION'")].metadata.name}' 2>/dev/null || true)
+
+echo "Deleting old deployment of $OLD_DEPLOYMENTS."
+for DEPLOYMENT in $OLD_DEPLOYMENTS; do
+    kubectl delete deployment $DEPLOYMENT -n $NAMESPACE
+done
+
 echo "Blue/green deployment of $APP_NAME (version $VERSION) completed successfully."
