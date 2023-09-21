@@ -11,9 +11,9 @@ DEPLOYMENTNAME=$APP_NAME-$VERSION
 
 cat $DEPLOYMENTFILE > deployment-$VERSION.yml
 
-sed -i "s/VERSION/$VERSION/g" deployment-$VERSION.yml
-sed -i "s/APP_NAME/$APP_NAME/g" deployment-$VERSION.yml
-sed -i "s/IMAGE/$IMAGE/g" deployment-$VERSION.yml
+sed -i "s|VERSION|$VERSION|g" deployment-$VERSION.yml
+sed -i "s|APP_NAME|$APP_NAME|g" deployment-$VERSION.yml
+sed -i "s|IMAGE|$IMAGE|g" deployment-$VERSION.yml
 
 # Deploy app
 kubectl apply -f deployment-$VERSION.yml -n $NAMESPACE
