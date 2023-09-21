@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 'APP_NAME-VERSION'
+  namespace: 'default'
+  labels:
+    app: 'APP_NAME'
+    version: 'VERSION'
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: 'APP_NAME'
+      version: 'VERSION'
+  template:
+    metadata:
+      labels:
+        app: 'APP_NAME'
+        version: 'VERSION'
+    spec:
+      containers:
+        - name: 'APP_NAME'
+          image: 'IMAGE'
+          ports:
+            - containerPort: 5000
