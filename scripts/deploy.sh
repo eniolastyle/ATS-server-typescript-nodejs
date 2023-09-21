@@ -19,7 +19,7 @@ sed -i "s|IMAGE|$IMAGE|g" deployment-$VERSION.yml
 kubectl apply -f deployment-$VERSION.yml -n $NAMESPACE
 
 # Deployment manifest is no longer needed.
-rm deployment-$VERSION.yml
+# rm deployment-$VERSION.yml
 
 # Wait until the Deployment is ready by checking the MinimumReplicasAvailable condition.
 READY=$(kubectl get deploy $DEPLOYMENTNAME -n $NAMESPACE -o json | jq '.status.conditions[] | select(.reason == "MinimumReplicasAvailable") | .status' | tr -d '"')
@@ -38,10 +38,24 @@ fi
 
 # Delete old deployments with different versions
 OLD_DEPLOYMENTS=$(kubectl get deployments -n $NAMESPACE -l app=$APP_NAME -o jsonpath='{.items[?(@.metadata.labels.version!="'$VERSION'")].metadata.name}' 2>/dev/null || true)
+# Get the old image from the current deployment
+OLD_IMAGE=$(kubectl get deployment $DEPLOYMENTNAME -n $NAMESPACE -o json | jq -r '.spec.template.spec.containers[0].image' 2>/dev/null || true)
+
 
 echo "Deleting old deployment of $OLD_DEPLOYMENTS."
 for DEPLOYMENT in $OLD_DEPLOYMENTS; do
     kubectl delete deployment $DEPLOYMENT -n $NAMESPACE
 done
+
+# Delete existing blue deployment manifests
+rm -f blue-deployment-*.yml
+
+# Create a blue manifest for ugent rollback
+OLD_VERSION=$(echo "$OLD_DEPLOYMENTS" | head -n 1)
+mv deployment-$VERSION.yml blue-deployment-$OLD_VERSION.yml
+
+sed -i "s|$VERSION|$OLD_VERSION|g" blue-deployment-$OLD_VERSION.yml
+sed -i "s|$IMAGE|$OLD_IMAGE|g" blue-deployment-$OLD_VERSION.yml
+
 
 echo "Blue/green deployment of $APP_NAME (version $VERSION) completed successfully."
