@@ -52,7 +52,7 @@ jobs:
 
       - name: deploy to gke
         env:
-          IMAGE: $REGISTRY/$PROJECT_ID/$IMAGE_NAME:$IMAGE_TAG
+          IMAGE: $REGISTRY/$PROJECT_ID/$IMAGE_NAME:${{ env.TAG }}
         run: |
           gcloud container clusters get-credentials $CLUSTER --region $REGION
           ./scripts/deploy.sh ${{ env.APP_NAME }} ${{ env.TAG }} ${{ env.IMAGE }} ./k8s/deploy.tmpl
