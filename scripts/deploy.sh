@@ -47,15 +47,15 @@ for DEPLOYMENT in $OLD_DEPLOYMENTS; do
     kubectl delete deployment $DEPLOYMENT -n $NAMESPACE
 done
 
-# Delete existing blue deployment manifests
-rm -f blue-deployment-*.yml
-
 # Create a blue manifest for ugent rollback
 OLD_VERSION=$(echo "$OLD_DEPLOYMENTS" | head -n 1)
 mv deployment-$VERSION.yml blue-deployment-$OLD_VERSION.yml
 
 sed -i "s|$VERSION|$OLD_VERSION|g" blue-deployment-$OLD_VERSION.yml
 sed -i "s|$IMAGE|$OLD_IMAGE|g" blue-deployment-$OLD_VERSION.yml
+
+rm -f ./k8s/blue-deployment-*.yml || true
+cp blue-deployment-$OLD_VERSION.yml ./k8s/
 
 
 echo "Blue/green deployment of $APP_NAME (version $VERSION) completed successfully."
