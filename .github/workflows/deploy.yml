@@ -2,7 +2,7 @@ name: Blue/Green - Deploy ATS Server to GKE
 
 on:
   push:
-    branches: [main]
+    branches: [test]
 
 env:
   REGISTRY: ${{ secrets.REGISTRY }}
