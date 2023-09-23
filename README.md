@@ -18,6 +18,8 @@ Before you get started, ensure you have the following prerequisites:
 
 - **GKE Cluster, Artifact Registry Repository, and Service Account**: You should have a GKE cluster set up, an Artifact Registry repository configured, and a Service Account with appropriate permissions. You can use the [Terraform provisioning repository](https://github.com/eniolastyle/ATS-GKE-Terraform) to provision these requirements automatically.
 
+![image](https://github.com/eniolastyle/ATS-server-typescript-nodejs/assets/58726365/06e5ce44-6088-4778-bdbb-e2938df091ff)
+
 ## How It Works
 
 This repository automates the blue-green deployment process using GitHub Actions. Here's how it works:
