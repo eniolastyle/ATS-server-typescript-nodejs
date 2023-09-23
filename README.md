@@ -6,6 +6,10 @@ This repository serves as a demonstration of implementing blue-green deployment 
 
 Image Credits: https://www.ianlewis.org/
 
+## What is Blue-Green Deployment
+
+A blue-green deployment is a software release strategy and deployment methodology used in the world of DevOps and continuous delivery to minimize downtime and reduce the risk associated with deploying new versions of an application.
+
 ## Requirements
 
 Before you get started, ensure you have the following prerequisites:
