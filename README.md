@@ -1,6 +1,7 @@
 # Blue-Green Deployment to Kubernetes Demo
 
 This repository serves as a demonstration of implementing blue-green deployment to Kubernetes using continuous integration and continuous deployment (CI/CD) pipelines. The goal is to showcase a workflow that automates the deployment process, including building the application, pushing the image to Google Artifact Registry, and deploying the application to a Google Kubernetes Engine (GKE) cluster.
+
 ![bg](https://github.com/eniolastyle/ATS-server-typescript-nodejs/assets/58726365/45a7b6df-56e1-42db-b5d0-4ef4e0de612d)
 
 Image Credits: https://www.ianlewis.org/
