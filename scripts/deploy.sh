@@ -56,6 +56,6 @@ sed -i "s|$IMAGE|$OLD_IMAGE|g" blue-deployment-$OLD_VERSION.yml
 
 rm -f ./k8s/blue-deployment-*.yml || true
 cp blue-deployment-$OLD_VERSION.yml ./k8s/
-
+ls -l ./k8s/
 
 echo "Blue/green deployment of $APP_NAME (version $VERSION) completed successfully."

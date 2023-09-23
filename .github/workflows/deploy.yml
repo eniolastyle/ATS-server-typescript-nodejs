@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: ${{ secrets.REGISTRY }}
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
-  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+  IMAGE_NAME: ${{ secrets.IMAGE_NAME }} # REPOSITORY/APP_NAME
   CLUSTER: ${{ secrets.CLUSTER }}
   REGION: ${{ secrets.REGION }}
   APP_NAME: ${{ secrets.APP_NAME }}
@@ -35,8 +35,11 @@ jobs:
         run: |
           echo "TAG=$(bash ./scripts/tag.sh)" >> $GITHUB_ENV
 
-      - name: run test
-        run: echo "Testing app.."
+      - name: run all test
+        run: echo "Testing app..."
+
+      - name: detect secrets
+        run: echo "TruffleHog OSS to detect secrets"
 
       - name: build and push the docker image
         env:
